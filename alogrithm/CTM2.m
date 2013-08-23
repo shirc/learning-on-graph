@@ -1,4 +1,4 @@
-function [ pred ] = CTM(fea, link, gnd, trainIdx, testIdx)
+function [ pred ] = CTM2(fea, link, gnd, trainIdx, testIdx)
     %% parameters
     alpha = 10;
     beta = 10;
@@ -25,8 +25,7 @@ function [ pred ] = CTM(fea, link, gnd, trainIdx, testIdx)
 %     [Pz_d] = LapPLSI2(fea', num_label, link, options, Pz_d, Pw_z, trainIdx, Y_train');
 %     [Pz_d] = LTM2(fea', num_label, link, options, Pz_d, Pw_z, trainIdx, Y_train');
     options.beta = beta;
-%     [Pz_d] = LTM3(fea', num_label, link, options, Pz_d, Pw_z, trainIdx, Y_train');
-    Pz_d = LGCC3(Pw_z, Pz_d, gnd', fea', link, trainIdx, alpha, beta);
+    [Pz_d] = LTM3(fea', num_label, link, options, Pz_d, Pw_z, trainIdx, Y_train');
     %% assign labels
     [~, pred_label] = max(Pz_d, [], 1);
     pred = zeros(sum(testIdx), num_label);
